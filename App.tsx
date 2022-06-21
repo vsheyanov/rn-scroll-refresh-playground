@@ -8,7 +8,7 @@
  * @format
  */
 
-import React, {FC, useState} from 'react';
+import React from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -17,8 +17,6 @@ import {
   Text,
   useColorScheme,
   View,
-  RefreshControlProps,
-  requireNativeComponent,
 } from 'react-native';
 
 import {
@@ -28,12 +26,6 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-
-const CustomRefresh = requireNativeComponent<RefreshControlProps>(
-  'RCTRefreshControlManagerCustom',
-);
-
-// console.log(RefreshControlManagerCustom);
 
 const Section: React.FC<{
   title: string;
@@ -63,14 +55,7 @@ const Section: React.FC<{
   );
 };
 
-// interface RefreshProps =
-
-const MyRefresh: FC<RefreshControlProps> = () => (
-  <View style={{width: 100, height: 100, backgroundColor: 'red'}} />
-);
-
 const App = () => {
-  const [refreshing, setRefreshing] = useState(false);
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
@@ -80,26 +65,9 @@ const App = () => {
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      {/* <Button
-         title="Butttton"
-         onPress={() => {
-           CustomCalendar.createCalendarEvent('Victor Birthday', 'Amsterdam');
-         }}
-       /> */}
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}
-        refreshControl={
-          <CustomRefresh
-            refreshing={refreshing}
-            onRefresh={() => {
-              setRefreshing(true);
-              setTimeout(() => {
-                setRefreshing(false);
-              }, 5000);
-            }}
-          />
-        }>
+        style={backgroundStyle}>
         <Header />
         <View
           style={{
