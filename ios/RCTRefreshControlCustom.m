@@ -28,34 +28,43 @@
 {
   if ((self = [super init])) {
     [self addTarget:self action:@selector(refreshControlValueChanged) forControlEvents:UIControlEventValueChanged];
-    
+
 //    UIImageView *paintView = [[UIImageView alloc]initWithFrame:CGRectZero];
 //    paintView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:@"https://images.ctfassets.net/2mwev93abaf1/6CAyb9D9JcGTMJOw2o7Wxw/db6cab6329783f5011de5955ea60e79d/Home.jpg?w=2500&h=1292&q=80&fm=webp"]]];
-    
+
 //    UIImageView *paintView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 50, 50)];
 //    paintView.image = [UIImage imageNamed:@"guidion_loader.gif"];
 //    paintView.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"guidion_loader.gif" ofType:@""]];
-    
+
 //    [paintView setBackgroundColor:[UIColor yellowColor]];
-    
+
 //    paintView.translatesAutoresizingMaskIntoConstraints = false;
-    
+
+    // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    //                            IMPORTANT!!!!
+    // this is where all magic happens. In the final implementation it is crutual to find
+    // the right positioning for the Lottie animation
+    // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
     LOTAnimationView *paintView = [LOTAnimationView animationNamed:@"animation"];
     paintView.contentMode = UIViewContentModeScaleAspectFill;
-    
+
     [self addSubview:paintView];
-    
+
     paintView.loopAnimation = true;
-    
+
 //    [paintView play];
     [paintView playWithCompletion:^(BOOL animationFinished) {
       // Do Something
     }];
-    
+
     CGRect lottieRect = CGRectMake(self.bounds.size.width/2 + 15, 0, 50, 50);
-//    CGRect lottieRect = CGRe();
     paintView.frame = lottieRect;
-    
+
     NSLayoutConstraint *width =[NSLayoutConstraint
                                         constraintWithItem:paintView
                                         attribute:NSLayoutAttributeWidth
@@ -92,10 +101,10 @@
 //    [self addConstraint:height];
 //    [self addConstraint:top];
 //    [self addConstraint:leading];
-    
+
     self.tintColor = [UIColor clearColor];
     self.backgroundColor = [UIColor clearColor];
-    
+
     _currentRefreshingStateClock = 1;
     _currentRefreshingStateTimestamp = 0;
     _isInitialRender = true;
