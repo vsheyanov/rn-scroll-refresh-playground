@@ -19,6 +19,8 @@ target 'ScrollRefreshHandler' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
+  pod 'lottie-ios', '~>2.5.3'
+
   target 'ScrollRefreshHandlerTests' do
     inherit! :complete
     # Pods for testing
