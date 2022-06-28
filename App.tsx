@@ -8,7 +8,7 @@
  * @format
  */
 
-import React, {FC, useState} from 'react';
+import React, {useState} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -17,8 +17,6 @@ import {
   Text,
   useColorScheme,
   View,
-  RefreshControlProps,
-  requireNativeComponent,
 } from 'react-native';
 
 import {
@@ -29,11 +27,7 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-const CustomRefresh = requireNativeComponent<RefreshControlProps>(
-  'AndroidSwipeRefreshLayoutCustom',
-);
-
-// 'RCTRefreshControlManagerCustom',
+import {RefreshControl} from './src/RefreshControl';
 
 const Section: React.FC<{
   title: string;
@@ -82,7 +76,7 @@ const App = () => {
        /> */}
       <ScrollView
         refreshControl={
-          <CustomRefresh
+          <RefreshControl
             refreshing={refreshing}
             onRefresh={() => {
               setRefreshing(true);
