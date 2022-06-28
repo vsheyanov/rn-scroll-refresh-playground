@@ -8,7 +8,7 @@
  * @format
  */
 
-import React, {useEffect, useState} from 'react';
+import React, {FC, useState} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -17,8 +17,8 @@ import {
   Text,
   useColorScheme,
   View,
-  requireNativeComponent,
   RefreshControlProps,
+  requireNativeComponent,
 } from 'react-native';
 
 import {
@@ -30,7 +30,7 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 const CustomRefresh = requireNativeComponent<RefreshControlProps>(
-  'AndroidSwipeRefreshLayoutCustom',
+  'RCTRefreshControlManagerCustom',
 );
 
 const Section: React.FC<{
@@ -61,6 +61,12 @@ const Section: React.FC<{
   );
 };
 
+// interface RefreshProps =
+
+const MyRefresh: FC<RefreshControlProps> = () => (
+  <View style={{width: 100, height: 100, backgroundColor: 'red'}} />
+);
+
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
   const [refreshing, setRefreshing] = useState(false);
@@ -72,6 +78,12 @@ const App = () => {
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+      {/* <Button
+         title="Butttton"
+         onPress={() => {
+           CustomCalendar.createCalendarEvent('Victor Birthday', 'Amsterdam');
+         }}
+       /> */}
       <ScrollView
         refreshControl={
           <CustomRefresh
@@ -87,7 +99,6 @@ const App = () => {
         }
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
-        {/* <CalendarModule /> */}
         <Header />
         <View
           style={{
