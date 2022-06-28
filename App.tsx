@@ -8,7 +8,7 @@
  * @format
  */
 
-import React, {useState} from 'react';
+import React, {FC, useState} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -58,8 +58,8 @@ const Section: React.FC<{
 };
 
 const App = () => {
-  const [refreshing, setRefreshing] = useState(false);
   const isDarkMode = useColorScheme() === 'dark';
+  const [refreshing, setRefreshing] = useState(false);
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
@@ -89,7 +89,6 @@ const App = () => {
         }
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
-        {/* <CalendarModule /> */}
         <Header />
         <View
           style={{
